@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Sokogarden</string>
+    <string name="title_sokogarden">SokoGarden</string>
+    <string name="btn_signup">SignUp</string>
+    <string name="btn_signin">SignIn</string>
+</resources>
