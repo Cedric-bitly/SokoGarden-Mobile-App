@@ -37,7 +37,8 @@ class Signin : AppCompatActivity() {
             startActivity(intent)
             finish() 
         }
-        
+
+
         // Logic for sign-in button
         signinBtn.setOnClickListener {
             val emailStr = email.text.toString()

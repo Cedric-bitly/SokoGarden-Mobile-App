@@ -61,6 +61,7 @@ class Signup : AppCompatActivity() {
                 if (passStr.isEmpty()) password.error = "Required"
 
             } else {
+
                 // Proceed with API logic
                 val api = "https://cedric22a.alwaysdata.net/api/signup"
                 val data = RequestParams()
