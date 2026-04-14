@@ -1,7 +1,9 @@
 package com.example.sokogarden
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.CycleInterpolator
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -36,31 +38,33 @@ class Signin : AppCompatActivity() {
             finish() 
         }
         
-        // Logic for sign-in button can be added here later
+        // Logic for sign-in button
         signinBtn.setOnClickListener {
-            // Placeholder for sign-in logic
-//            Specify the API endpoint
-            // Specify the API endpoint
+            val emailStr = email.text.toString()
+            val passStr = password.text.toString()
 
-            val api = "https://kbenkamotho.alwaysdata.net/api/signin"
+            // Check if fields are empty
+            if (emailStr.isEmpty() || passStr.isEmpty()) {
+                // Playful "Shake" animation
+                val shake = ObjectAnimator.ofFloat(signinBtn, "translationX", 0f, 25f)
+                shake.duration = 500
+                shake.interpolator = CycleInterpolator(3f)
+                shake.start()
 
-// Create a RequestParams that will enable you to hold the data in form of a bundle/package
+                // Set errors on fields
+                if (emailStr.isEmpty()) email.error = "Required"
+                if (passStr.isEmpty()) password.error = "Required"
+                
+            } else {
+                // Proceed with API logic
+                val api = "https://kbenkamotho.alwaysdata.net/api/signin"
+                val data = RequestParams()
+                data.put("email", emailStr)
+                data.put("password", passStr)
 
-            val data = RequestParams()
-
-//Add/append/attach the email and the password
-
-            data.put("email", email.text.toString())
-            data.put("password", password.text.toString())
-
-//Import the API helper
-
-            val helper = ApiHelper(applicationContext)
-
-//By use of the function post_login inside of the helper class, post your data
-
-            helper.post_login(api, data)
-
+                val helper = ApiHelper(applicationContext)
+                helper.post_login(api, data)
+            }
         }
     }
 }
