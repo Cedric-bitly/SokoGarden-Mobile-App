@@ -57,7 +57,7 @@ class Signin : AppCompatActivity() {
                 
             } else {
                 // Proceed with API logic
-                val api = "https://kbenkamotho.alwaysdata.net/api/signin"
+                val api = "https://cedric22a.alwaysdata.net/api/signin"
                 val data = RequestParams()
                 data.put("email", emailStr)
                 data.put("password", passStr)
