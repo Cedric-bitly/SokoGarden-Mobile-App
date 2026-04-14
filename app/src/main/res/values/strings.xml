@@ -3,4 +3,9 @@
     <string name="title_sokogarden">SokoGarden</string>
     <string name="btn_signup">SignUp</string>
     <string name="btn_signin">SignIn</string>
+    <string name="title_signin">Signin</string>
+    <string name="hint_email">Enter Email Address…</string>
+    <string name="hint_password">Enter your Password…</string>
+    <string name="btn_signin_emoji">🛄 SignIn</string>
+    <string name="text_no_account">Don\'t have an account? Sign Up</string>
 </resources>

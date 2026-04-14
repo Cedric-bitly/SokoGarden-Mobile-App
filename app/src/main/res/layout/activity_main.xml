@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SokoGarden"
+        android:text="❇️ SokoGarden"
         android:textSize="34sp"
         android:textStyle="bold|italic"
         android:textAlignment="center"
@@ -34,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SignUp"
+            android:text="👤 SignUp"
             android:textSize="20sp"
             android:layout_margin="8dp"
             android:textColor="@color/white"
@@ -45,11 +45,34 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SignIn"
+            android:text="🛄 SignIn"
             android:textSize="20sp"
             android:layout_margin="8dp"
             android:textColor="@color/white"
             android:backgroundTint="#051232"/>
+
+
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#ED0909"
+            android:textColor="#F2F2F2"
+            android:visibility="gone"/>
+
 
     </LinearLayout>
 

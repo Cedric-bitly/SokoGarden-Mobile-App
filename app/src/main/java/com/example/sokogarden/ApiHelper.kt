@@ -54,7 +54,7 @@ class ApiHelper(var context: Context) {
                 response: JSONObject?
             ) {
                 val message = response?.optString("message")
-                if (message == "Login success") {
+                if (message == "Login successful") {
                     val user = response.optJSONObject("user")
                     val username = user?.optString("username") ?: ""
                     val email = user?.optString("email") ?: ""
@@ -68,7 +68,7 @@ class ApiHelper(var context: Context) {
 
                     Toast.makeText(context, "Welcome $username", Toast.LENGTH_LONG).show()
 
-                    // Redirect to Dashboard
+                    // Redirect to  Dashboard
                     val intent = Intent(context, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                     context.startActivity(intent)
