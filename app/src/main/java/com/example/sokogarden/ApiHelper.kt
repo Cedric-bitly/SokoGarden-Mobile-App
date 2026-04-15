@@ -1,8 +1,12 @@
 package com.example.sokogarden
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.view.View
+import android.view.animation.CycleInterpolator
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,7 +47,7 @@ class ApiHelper(var context: Context) {
     }
 
     //Requires Access Token
-    fun post_login(api: String, params: RequestParams) {
+    fun post_login(api: String, params: RequestParams, button: Button? = null, passwordField: EditText? = null) {
         Toast.makeText(context, "Please wait for response", Toast.LENGTH_LONG).show()
         val client = AsyncHttpClient(true, 80, 443)
 
@@ -70,10 +74,22 @@ class ApiHelper(var context: Context) {
 
                     // Redirect to  Dashboard
                     val intent = Intent(context, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     context.startActivity(intent)
                 } else {
-                    Toast.makeText(context, "$message", Toast.LENGTH_LONG).show()
+                    // ❌ FAILED Login Logic
+                    Toast.makeText(context, "Invalid Credentials", Toast.LENGTH_SHORT).show()
+                    
+                    // Shake the button playfully
+                    button?.let {
+                        val shake = ObjectAnimator.ofFloat(it, "translationX", 0f, 25f)
+                        shake.duration = 500
+                        shake.interpolator = CycleInterpolator(3f)
+                        shake.start()
+                    }
+
+                    // Clear password field to force re-entry
+                    passwordField?.text?.clear()
                 }
             }
 
@@ -101,9 +117,9 @@ fun loadProducts(url: String, recyclerView: RecyclerView, progressBar: ProgressB
             response: JSONArray
         ) {
             progressBar?.visibility = View.GONE
-            // val productList = ProductAdapter.fromJsonArray(response)
-            // val adapter = ProductAdapter(productList)
-            // recyclerView.adapter = adapter
+             val productList = ProductAdapter.fromJsonArray(response)
+             val adapter = ProductAdapter(productList)
+             recyclerView.adapter = adapter
         }
 
         override fun onFailure(

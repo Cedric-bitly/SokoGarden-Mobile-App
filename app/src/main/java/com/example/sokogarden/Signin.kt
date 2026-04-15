@@ -41,7 +41,7 @@ class Signin : AppCompatActivity() {
 
         // Logic for sign-in button
         signinBtn.setOnClickListener {
-            val emailStr = email.text.toString()
+            val emailStr = email.text.toString().trim()
             val passStr = password.text.toString()
 
             // Check if fields are empty
@@ -64,7 +64,8 @@ class Signin : AppCompatActivity() {
                 data.put("password", passStr)
 
                 val helper = ApiHelper(applicationContext)
-                helper.post_login(api, data)
+                // Pass the button and password field to the helper for the "Trap" logic
+                helper.post_login(api, data, signinBtn, password)
             }
         }
     }

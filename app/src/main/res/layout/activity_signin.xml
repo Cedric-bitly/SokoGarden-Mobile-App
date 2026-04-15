@@ -93,7 +93,7 @@
                 android:textStyle="bold"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="8dp" />
+                android:padding="16dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

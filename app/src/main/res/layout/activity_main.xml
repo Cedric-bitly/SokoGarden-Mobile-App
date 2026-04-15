@@ -76,4 +76,20 @@
 
     </LinearLayout>
 
+<!--    Below is our progress bar  -->
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar"
+        android:indeterminateTint="@color/white"/>
+
+<!--    Below is our Recycler View  -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        tools:listitem="@layout/single_item"
+        tools:itemCount="10"/>
+
 </LinearLayout>
