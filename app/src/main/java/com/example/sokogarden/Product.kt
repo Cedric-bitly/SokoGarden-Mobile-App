@@ -1,7 +1,9 @@
 package com.example.sokogarden
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +26,7 @@ class ProductAdapter(private val productList: List<Product>) :
         val txtDesc: TextView = itemView.findViewById(R.id.product_description)
         val txtPrice: TextView = itemView.findViewById(R.id.product_cost)
         val imgProduct: ImageView = itemView.findViewById(R.id.product_photo)
-//        val btnPurchase: TextView = itemView.findViewById(R.id.purchase)
+        val btnPurchase: Button = itemView.findViewById(R.id.btnPurchase)
     }
     //Access the Layout - Single Item
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -39,31 +41,31 @@ class ProductAdapter(private val productList: List<Product>) :
         holder.txtName.text = product.product_name
         holder.txtDesc.text = product.product_description ?: "No description"
         holder.txtPrice.text = "Ksh ${product.product_cost}"
-        //Change/Replace modcom2 below to your Python Anywhere username
-        val imageUrl = "https://kbenkamotho.alwaysdata.net/static/images/${product.product_photo}"
+        
+        val imageUrl = "https://cedric22a.alwaysdata.net/static/images/${product.product_photo}"
 
-        //Load image using Glide, Load Faster with Glide
         Glide.with(holder.itemView.context)
             .load(imageUrl )
-            .placeholder(R.drawable.ic_launcher_background) // Make sure you have a placeholder image
+            .centerCrop()
+            .placeholder(R.drawable.ic_launcher_background)
             .into(holder.imgProduct)
  
-                //Handle Purchase Button Listener
-//                holder.btnPurchase.setOnClickListener {
-//                    val context = holder.itemView.context
-//                    val intent = android.content.Intent(context, PaymentActivity::class.java).apply {
-//                        putExtra("product_id", product.product_id)
-//                        putExtra("product_name", product.product_name)
-//                        putExtra("product_description", product.product_description)
-//                        putExtra("product_cost", product.product_cost)
-//                        putExtra("product_photo", product.product_photo)
-//                    }
-//                    context.startActivity(intent)
-//                }
+        // 🚀 Open Product Details Activity
+        holder.btnPurchase.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, ProductDetails::class.java).apply {
+                putExtra("product_id", product.product_id)
+                putExtra("product_name", product.product_name)
+                putExtra("product_description", product.product_description)
+                putExtra("product_cost", product.product_cost)
+                putExtra("product_photo", product.product_photo)
+            }
+            context.startActivity(intent)
+        }
     }
  
     override fun getItemCount(): Int = productList.size
-   //Return all products Details as a LIST
+
     companion object {
         fun fromJsonArray(jsonArray: JSONArray): List<Product> {
             val list = mutableListOf<Product>()
@@ -71,10 +73,10 @@ class ProductAdapter(private val productList: List<Product>) :
                 val obj = jsonArray.getJSONObject(i)
                 list.add(
                     Product(
-                        product_id = obj.getInt("product_id"),
-                        product_name = obj.getString("product_name"),
+                        product_id = obj.optInt("product_id", 0),
+                        product_name = obj.optString("product_name", "N/A"),
                         product_description = obj.optString("product_description", ""),
-                        product_cost = obj.getInt("product_cost"),
+                        product_cost = obj.optInt("product_cost", 0),
                         product_photo = obj.optString("product_photo", "")
                     )
                 )

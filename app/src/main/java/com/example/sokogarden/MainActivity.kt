@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         val progressBar = findViewById<ProgressBar>(R.id.progressbar)
 
 //        specify the API URL endpoint
-        val url = "https://kbenkamotho.alwaysdata.net/api/get_products"
+        val url = "https://cedric22a.alwaysdata.net/api/get_products"
 
 //        import the helper class
         val helper = ApiHelper(applicationContext)

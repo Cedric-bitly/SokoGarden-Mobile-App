@@ -1,96 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="@color/cardBackground">
 
-
-<!--    Below is a cardview   -->
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        app:cardElevation="15dp"
-        app:cardCornerRadius="12dp">
+        android:layout_height="wrap_content"
+        android:minHeight="160dp"
+        android:padding="4dp">
 
-<!--        Below is another Linear Layout that detects how the contents will be aligned inside the cardview  -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="8dp"
-            android:background="#72EBE0">
+        <!-- Square Image on the Left -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/product_photo"
+            android:layout_width="140dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:background="#F8F8F8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedTopCorners"
+            android:contentDescription="Product Image" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/product_name"
-                android:text="Product Name"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:textColor="#4048E9"
-                android:fontFamily="sans-serif-black"/>
+        <!-- Price Badge floating over image -->
+        <TextView
+            android:id="@+id/product_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:background="@drawable/shape"
+            android:backgroundTint="@color/primary"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:text="Ksh 2,500"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/product_photo"
+            app:layout_constraintTop_toTopOf="@+id/product_photo" />
 
-<!--            Below is our product_image  -->
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:id="@+id/product_photo"
-                android:src="@mipmap/ic_launcher"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="5dp"/>
+        <!-- Product Info on the Right -->
+        <TextView
+            android:id="@+id/product_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:text="Golden Pothos"
+            android:textColor="@color/textPrimary"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/product_photo"
+            app:layout_constraintTop_toTopOf="parent" />
 
-<!--            Below is a text view for the product_cost   -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/product_cost"
-                android:text="Product Cost"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="8dp"
-                android:textColor="#000"/>
+        <TextView
+            android:id="@+id/product_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:maxLines="3"
+            android:text="A beautiful indoor plant that is very easy to care for and grows quickly."
+            android:textColor="@color/textSecondary"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnPurchase"
+            app:layout_constraintEnd_toEndOf="@+id/product_name"
+            app:layout_constraintStart_toStartOf="@+id/product_name"
+            app:layout_constraintTop_toBottomOf="@+id/product_name"
+            app:layout_constraintVertical_bias="0.0" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPurchase"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Details →"
+            android:textColor="@color/primary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-<!--            Below is the text view for the product_description  -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/product_description"
-                android:text="The product description will be appear here...!"
-                android:textSize="20sp"
-                android:textStyle="bold|italic"
-                android:textAlignment="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="8dp"
-                android:textColor="#000" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--            Below is the purchase now button  -->
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnPurchase"
-                android:text="Purchase Now"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="65dp"
-                android:layout_marginRight="65dp"
-                android:backgroundTint="#051232"
-                android:textColor="#FFFFFF"
-                android:elevation="10dp"
-                android:fontFamily="sans-serif-black"/>
-
-
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>
