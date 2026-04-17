@@ -55,7 +55,7 @@ class PaymentActivity : AppCompatActivity() {
            val data = RequestParams()
 
 //            insert data into request params
-            data.put("phone", phoneInput.text.toString())
+            data.put("phone", phoneInput.text.toString().trim())
 
 
             val phoneNum = phoneInput.text.toString()
@@ -66,6 +66,9 @@ class PaymentActivity : AppCompatActivity() {
                 
                 val helper = ApiHelper(applicationContext)
                 helper.post(api, data)
+
+//                clear the phone number from the edit text
+                phoneInput.text?.clear()
             }
         }
     }
