@@ -7,89 +7,86 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#7B46E9"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
+
+    <!-- Premium Curved Header -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="❇️ SokoGarden"
-        android:textSize="34sp"
-        android:textStyle="bold|italic"
+        android:textSize="36sp"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:background="@drawable/shape"
-        android:padding="12dp"
-        android:layout_margin="16dp"
-        android:textColor="#0F0E0E"/>
+        android:paddingTop="60dp"
+        android:paddingBottom="40dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="#1A1A1A"
+        android:elevation="4dp"/>
 
-    <!-- Horizontal layout to hold buttons side-by-side -->
+    <!-- Action Buttons Row (SignUp, SignIn, About) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:paddingHorizontal="16dp"
+        android:layout_marginBottom="12dp">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/signupBtn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:text="👤 SignUp"
-            android:textSize="20sp"
-            android:layout_margin="8dp"
-            android:textColor="@color/white"
-            android:backgroundTint="#051232"/>
+            android:text="SignUp"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp"
+            app:cornerRadius="30dp"
+            android:backgroundTint="#051232"
+            android:textColor="@color/white"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/signinBtn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:text="🛄 SignIn"
-            android:textSize="20sp"
-            android:layout_margin="8dp"
-            android:textColor="@color/white"
-            android:backgroundTint="#051232"/>
+            android:text="SignIn"
+            android:textSize="12sp"
+            android:layout_marginHorizontal="4dp"
+            app:cornerRadius="30dp"
+            android:backgroundTint="#051232"
+            android:textColor="@color/white"/>
 
-
-        <TextView
-            android:id="@+id/welcomeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome"
-            android:textSize="24sp"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:visibility="gone"
-            android:layout_marginTop="20dp"/>
-
-        <Button
-            android:id="@+id/logoutBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Logout"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#ED0909"
-            android:textColor="#F2F2F2"
-            android:visibility="gone"/>
-
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/aboutBtn"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="About"
+            android:textSize="12sp"
+            android:layout_marginStart="4dp"
+            app:cornerRadius="30dp"
+            android:backgroundTint="#7B46E9"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
-<!--    Below is our progress bar  -->
     <ProgressBar
+        android:id="@+id/progressbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/progressbar"
-        android:indeterminateTint="@color/white"/>
+        android:indeterminateTint="@color/primary"
+        android:layout_marginVertical="8dp"
+        android:visibility="gone"/>
 
-<!--    Below is our Recycler View  -->
+    <!-- Products List with proper padding -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
         tools:listitem="@layout/single_item"
-        tools:itemCount="10"/>
+        tools:itemCount="5"/>
 
 </LinearLayout>
