@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Load Products
-        val api = "https://cedric22a.alwaysdata.net/api/products"
+        val api = "https://cedric22a.alwaysdata.net/api/get_products"
         val helper = ApiHelper(this)
         helper.loadProducts(api, recyclerView, progressBar)
     }
